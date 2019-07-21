@@ -151,7 +151,7 @@ def sendLightRequest(light, data, lights, addresses):
                 if "5712" not in payload:
                     payload["5712"] = 4 #If no transition add one, might also add check to prevent large transitiontimes
                 check_output("./coap-client-linux -m put -u \"" + addresses[light]["identity"] + "\" -k \"" + addresses[light]["preshared_key"] + "\" -e '{ \"3311\": [" + json.dumps(payload) + "] }' \"" + url + "\"", shell=True)
-            elif addresses[light]["protocol"] in ["hue", "deconz"]:
+            elif addresses[light]["protocol"] == "deconz":
                 color = {}
                 if "xy" in payload:
                     color["xy"] = payload["xy"]
